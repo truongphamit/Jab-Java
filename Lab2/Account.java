@@ -16,7 +16,11 @@ public class Account {
 	}
 
 	public void setBalance(double balance) {
-		this.balance = balance;
+		if (balance >= 0) {
+        		this.balance = balance;
+	    	} else {
+            		System.out.println("Balance must more than 0.");
+	    	}
 	}
 
 	public double getBalance() {

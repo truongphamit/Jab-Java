@@ -44,6 +44,17 @@ public class ClockTime {
 		minute = totalMinute % 60;
 	}
 
+	public boolean isWorkTime() {
+		boolean check = false;
+		if (amPm == "AM") {
+			if (hour >= 9) check = true;
+		} else {
+			if (hour < 5) check = true;
+			if (hour == 5 && minute == 0) check = true;
+		}
+		return check;
+	}
+
 	@Override
 	public String toString() {
 		return hour + ":" + minute + " " + amPm;

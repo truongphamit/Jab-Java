@@ -19,5 +19,26 @@ public class ClockTimeTest {
 		System.out.println(time);
 		time.increase(21075); // 4:26 PM (2 weeks later)
 		System.out.println(time);
+		
+		ClockTime t0 = new ClockTime(12, 45, "AM"); // false
+		System.out.println(t0.isWorkTime());
+		ClockTime t1 = new ClockTime( 6, 02, "AM"); // false
+		System.out.println(t1.isWorkTime());
+		ClockTime t2 = new ClockTime( 8, 59, "AM"); // false
+		System.out.println(t2.isWorkTime());
+		ClockTime t3 = new ClockTime( 9, 00, "AM"); // true
+		System.out.println(t3.isWorkTime());
+		ClockTime t4 = new ClockTime(11, 38, "AM"); // true
+		System.out.println(t4.isWorkTime());
+		ClockTime t5 = new ClockTime(12, 53, "PM"); // true
+		System.out.println(t5.isWorkTime());
+		ClockTime t6 = new ClockTime( 3, 15, "PM"); // true
+		System.out.println(t6.isWorkTime());
+		ClockTime t7 = new ClockTime( 4, 59, "PM"); // true
+		System.out.println(t7.isWorkTime());
+		ClockTime t8 = new ClockTime( 5, 00, "PM"); // true
+		System.out.println(t8.isWorkTime());
+		ClockTime t9 = new ClockTime( 5, 01, "PM"); // false
+		System.out.println(t9.isWorkTime());
 	}
 }

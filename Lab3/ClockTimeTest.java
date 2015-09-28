@@ -20,7 +20,7 @@ public class ClockTimeTest {
 		time.increase(21075); // 4:26 PM (2 weeks later)
 		System.out.println(time);
 		
-		ClockTime t0 = new ClockTime(12, 45, "AM"); // false
+		ClockTime t0 = new ClockTime(0, 45, "AM"); // false
 		System.out.println(t0.isWorkTime());
 		ClockTime t1 = new ClockTime( 6, 02, "AM"); // false
 		System.out.println(t1.isWorkTime());
@@ -30,7 +30,7 @@ public class ClockTimeTest {
 		System.out.println(t3.isWorkTime());
 		ClockTime t4 = new ClockTime(11, 38, "AM"); // true
 		System.out.println(t4.isWorkTime());
-		ClockTime t5 = new ClockTime(12, 53, "PM"); // true
+		ClockTime t5 = new ClockTime(0, 53, "PM"); // true
 		System.out.println(t5.isWorkTime());
 		ClockTime t6 = new ClockTime( 3, 15, "PM"); // true
 		System.out.println(t6.isWorkTime());

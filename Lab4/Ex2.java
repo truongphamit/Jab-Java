@@ -7,7 +7,7 @@ public class Ex2 {
 		int n;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Dap an: ");
-		System.out.println(result);
+		printArray(result);
 		System.out.println("Nhap vao so luong thi sinh: ");
 		n = sc.nextInt();
 		caculate(n, sc);
@@ -16,12 +16,12 @@ public class Ex2 {
 	public static void caculate(int n, Scanner sc) {
 		Answer answers[] = new Answer[n];
 		for (int i = 0; i < n; i++) {
-			System.out.println("Thi sinh #" + i + ": " );
+			System.out.println("Thi sinh #" + (i+1) + ": " );
 			answers[i] = getAnswer(sc);
 		}
 		System.out.println("Diem:");
 		for (int i = 0; i < n; i++) {
-			System.out.print("Thi sinh #" + i + ": ");
+			System.out.print("Thi sinh #" + (i+1) + ": ");
 			System.out.println(answers[i].getScore() + "/" + result.length);
 		}
 	}
@@ -31,10 +31,17 @@ public class Ex2 {
 		int sum = 0;
 		char value[] = new char[result.length];
 		for (int i = 0; i < result.length; i++) {
-			value[i] = sc.next().charAt(0);
+			value[i] =Character.toUpperCase(sc.next().charAt(0));
 			if (value[i] == result[i]) ++ sum;
 		}
 		answer = new Answer(value, sum);
 		return answer;
+	}
+
+	public static void printArray(char[] arr) {
+		for (char i : arr) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
 	}
 }

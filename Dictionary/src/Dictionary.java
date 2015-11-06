@@ -20,8 +20,6 @@ public class Dictionary {
 		words = new TreeSet<>();
 		fstream = new FileInputStream(path);
 		br = new BufferedReader(new InputStreamReader(fstream));
-		fostream = new FileOutputStream(path, true);
-		bw = new BufferedWriter(new OutputStreamWriter(fostream));
 		readWordsFromFile();
 	}
 
@@ -68,11 +66,13 @@ public class Dictionary {
 
 	private void writeWordsToFile() throws IOException {
 		fostream = new FileOutputStream(path, false);
+		bw = new BufferedWriter(new OutputStreamWriter(fostream));
 		for (Word n : words) {
 			bw.write(n.toString());
 			bw.newLine();
 		}
-		fostream = new FileOutputStream(path, true);
+		bw.close();
+		fostream.close();
 	}
 
 	public boolean edit(Word oldWord, Word newWord) throws IOException {

@@ -1,13 +1,44 @@
 
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 public class UserInterface extends JFrame {
-	
 	private static final long serialVersionUID = 1L;
+	
+	// Components
+	private javax.swing.JButton btnTranslate;
+	private javax.swing.JScrollPane jScrollPaneResult;
+	private javax.swing.JMenuBar mainMenuBar;
+	private javax.swing.JMenu menuFile;
+	private javax.swing.JMenuItem itemNew;
+	private javax.swing.JMenuItem itemEdit;
+	private javax.swing.JMenuItem itemExit;
+	private javax.swing.JLabel lbResult;
+	private javax.swing.ButtonGroup rdGroup;
+	private javax.swing.JRadioButton rdbEV;
+	private javax.swing.JRadioButton rdbVE;
+	private javax.swing.JTextField tfInput;
+	// End Components
+	
 	private static final String evPath = "dictd_anh-viet.txt";
 	private static final String vepath = "dictd_viet-anh.txt";
 	private Dictionary evDict;
@@ -17,102 +48,118 @@ public class UserInterface extends JFrame {
 		super(title);
 		evDict = new Dictionary(evPath);
 		veDict = new Dictionary(vepath);
-		
 		initComponents();
 	}
 
 	private void initComponents() {
-		rdGroup = new javax.swing.ButtonGroup();
-		tfInput = new javax.swing.JTextField();
-		btnTranslate = new javax.swing.JButton();
-		lbResult = new javax.swing.JLabel("",SwingConstants.CENTER);
-		jScrollPaneResult = new javax.swing.JScrollPane();
-		rdbEV = new javax.swing.JRadioButton();
-		rdbVE = new javax.swing.JRadioButton();
-		mainMenuBar = new javax.swing.JMenuBar();
-        menuFile = new javax.swing.JMenu();
-        itemNew = new javax.swing.JMenuItem();
-        itemEdit = new javax.swing.JMenuItem();
+		rdGroup = new ButtonGroup();
+		tfInput = new JTextField();
+		btnTranslate = new JButton();
+		lbResult = new JLabel("", SwingConstants.CENTER);
+		jScrollPaneResult = new JScrollPane();
+		rdbEV = new JRadioButton();
+		rdbVE = new JRadioButton();
+		mainMenuBar = new JMenuBar();
+		menuFile = new JMenu();
+		itemNew = new JMenuItem();
+		itemEdit = new JMenuItem();
+		itemExit = new JMenuItem();
 
-        lbResult.setBorder(new EmptyBorder(5, 5, 5, 5));
-        
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		lbResult.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setSize(new java.awt.Dimension(800, 600));
 
-		tfInput.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		tfInput.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				tfInputActionPerformed(evt);
 			}
 		});
 
 		btnTranslate.setText("Dịch");
-		btnTranslate.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnTranslate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnTranslateActionPerformed(evt);
 			}
 		});
-		
+
 		jScrollPaneResult.setViewportView(lbResult);
 		rdGroup.add(rdbEV);
 		rdbEV.setText("E-V");
 		rdbEV.setSelected(true);
+		rdbEV.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clear();
+			}
+		});
 
 		rdGroup.add(rdbVE);
 		rdbVE.setText("V-E");
-		
+		rdbVE.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clear();
+			}
+		});
+
 		menuFile.setText("Tùy chọn");
 		menuFile.add(itemNew);
-        itemNew.setText("Thêm mới");
-        itemNew.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		itemNew.setText("Thêm mới");
+		itemNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
 				itemNewActionPerformed(evt);
 			}
 		});
-        itemEdit.setText("Sửa");
-        menuFile.add(itemEdit);
-        itemEdit.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+		itemEdit.setText("Sửa");
+		menuFile.add(itemEdit);
+		itemEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
 				itemEditActionPerformed(evt);
 			}
 		});
-        
-        mainMenuBar.add(menuFile);
-        setJMenuBar(mainMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tfInput, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTranslate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(rdbEV)
-                        .addGap(18, 18, 18)
-                        .addComponent(rdbVE)
-                        .addGap(46, 46, 46))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPaneResult, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTranslate)
-                    .addComponent(rdbEV)
-                    .addComponent(rdbVE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPaneResult, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+		itemExit.setText("Thoát");
+		menuFile.add(itemExit);
+		itemExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 
+		mainMenuBar.add(menuFile);
+		setJMenuBar(mainMenuBar);
+
+		GroupLayout layout = new GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout
+						.createParallelGroup(
+								GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout.createSequentialGroup()
+										.addComponent(tfInput, GroupLayout.PREFERRED_SIZE, 350,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(18, 18, 18).addComponent(btnTranslate)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+										.addComponent(rdbEV).addGap(18, 18, 18).addComponent(rdbVE).addGap(46, 46, 46))
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(jScrollPaneResult, GroupLayout.PREFERRED_SIZE, 596,
+										GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))));
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(tfInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnTranslate).addComponent(rdbEV).addComponent(rdbVE))
+						.addGap(18, 18, 18)
+						.addComponent(jScrollPaneResult, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+						.addContainerGap()));
 		pack();
 	}
 
@@ -123,9 +170,25 @@ public class UserInterface extends JFrame {
 	private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {
 		translateAction();
 	}
-	
-	// Dialog add new word
-	private void itemNewActionPerformed(java.awt.event.ActionEvent evt){
+
+	private void itemEditActionPerformed(java.awt.event.ActionEvent evt) {
+		if (rdbEV.isSelected()) {
+			if (tfInput.getText().isEmpty() || lbResult.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Trống!");
+				return;
+			}
+			new EditDialog(evDict, new Word(tfInput.getText(), lbResult.getText()));
+		}
+		if (rdbVE.isSelected()) {
+			if (tfInput.getText().isEmpty() || lbResult.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Trống!");
+				return;
+			}
+			new EditDialog(veDict, new Word(tfInput.getText(), lbResult.getText()));
+		}
+	}
+
+	private void itemNewActionPerformed(java.awt.event.ActionEvent evt) {
 		if (rdbEV.isSelected()) {
 			new NewDialog(evDict);
 		}
@@ -133,14 +196,10 @@ public class UserInterface extends JFrame {
 			new NewDialog(veDict);
 		}
 	}
-	
-	private void itemEditActionPerformed(java.awt.event.ActionEvent evt){
-		if (rdbEV.isSelected()) {
-			new EditDialog(evDict, new Word(tfInput.getText(), lbResult.getText()));
-		}
-		if (rdbVE.isSelected()) {
-			new EditDialog(veDict, new Word(tfInput.getText(), lbResult.getText()));
-		}
+
+	private void clear() {
+		tfInput.setText("");
+		lbResult.setText("");
 	}
 
 	private void translateAction() {
@@ -151,7 +210,7 @@ public class UserInterface extends JFrame {
 			lbResult.setText(findByVietnamese(tfInput.getText()));
 		}
 	}
-	
+
 	private String findByEnglish(String s) {
 		for (Word n : evDict.getWords()) {
 			if (n.getWord().equals(s)) {
@@ -169,15 +228,13 @@ public class UserInterface extends JFrame {
 		}
 		return "Không tìm thấy";
 	}
-	
-	//Main
+
 	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					UserInterface dict;
-					dict = new UserInterface("TDict");
+					UserInterface dict = new UserInterface("TDict");
 					dict.setVisible(true);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -185,18 +242,4 @@ public class UserInterface extends JFrame {
 			}
 		});
 	}
-	
-	//Components
-	private javax.swing.JButton btnTranslate;
-	private javax.swing.JScrollPane jScrollPaneResult;
-    private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JMenu menuFile;
-    private javax.swing.JMenuItem itemNew;
-    private javax.swing.JMenuItem itemEdit;
-	private javax.swing.JLabel lbResult;
-	private javax.swing.ButtonGroup rdGroup;
-	private javax.swing.JRadioButton rdbEV;
-	private javax.swing.JRadioButton rdbVE;
-	private javax.swing.JTextField tfInput;
-	//End Components
 }

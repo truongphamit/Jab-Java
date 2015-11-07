@@ -65,7 +65,7 @@ public class EditDialog extends JDialog{
 						JOptionPane.showMessageDialog(null, "Đã sửa!");
 						dispose();
 					} else {
-						JOptionPane.showMessageDialog(null, "Từ ban đầu không tồn tại!");
+						JOptionPane.showMessageDialog(null, "Từ đã tồn tại!");
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block

@@ -76,8 +76,7 @@ public class Dictionary {
 	}
 
 	public boolean edit(Word oldWord, Word newWord) throws IOException {
-		if (words.remove(oldWord)) {
-			words.add(newWord);
+		if (words.remove(oldWord) && words.add(newWord)) {
 			writeWordsToFile();
 			return true;
 		}

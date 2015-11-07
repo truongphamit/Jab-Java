@@ -25,18 +25,18 @@ public class UserInterface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	// Components
-	private javax.swing.JButton btnTranslate;
-	private javax.swing.JScrollPane jScrollPaneResult;
-	private javax.swing.JMenuBar mainMenuBar;
-	private javax.swing.JMenu menuFile;
-	private javax.swing.JMenuItem itemNew;
-	private javax.swing.JMenuItem itemEdit;
-	private javax.swing.JMenuItem itemExit;
-	private javax.swing.JLabel lbResult;
-	private javax.swing.ButtonGroup rdGroup;
-	private javax.swing.JRadioButton rdbEV;
-	private javax.swing.JRadioButton rdbVE;
-	private javax.swing.JTextField tfInput;
+	private JButton btnTranslate;
+	private JScrollPane jScrollPaneResult;
+	private JMenuBar mainMenuBar;
+	private JMenu menuFile;
+	private JMenuItem itemNew;
+	private JMenuItem itemEdit;
+	private JMenuItem itemExit;
+	private JLabel lbResult;
+	private ButtonGroup rdGroup;
+	private JRadioButton rdbEV;
+	private JRadioButton rdbVE;
+	private JTextField tfInput;
 	// End Components
 	
 	private static final String evPath = "dictd_anh-viet.txt";
@@ -163,32 +163,44 @@ public class UserInterface extends JFrame {
 		pack();
 	}
 
-	private void tfInputActionPerformed(java.awt.event.ActionEvent evt) {
+	private void tfInputActionPerformed(ActionEvent evt) {
 		translateAction();
 	}
 
-	private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnTranslateActionPerformed(ActionEvent evt) {
 		translateAction();
 	}
 
-	private void itemEditActionPerformed(java.awt.event.ActionEvent evt) {
+	private void itemEditActionPerformed(ActionEvent evt) {
 		if (rdbEV.isSelected()) {
-			if (tfInput.getText().isEmpty() || lbResult.getText().isEmpty()) {
+			if (tfInput.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Trống!");
 				return;
 			}
-			new EditDialog(evDict, new Word(tfInput.getText(), lbResult.getText()));
+			Word word = findByEnglish(tfInput.getText());
+			if (word == null) {
+				JOptionPane.showMessageDialog(null, "Từ không tồn tại!");
+				return;
+			} else {
+				new EditDialog(evDict, word);
+			}
 		}
 		if (rdbVE.isSelected()) {
-			if (tfInput.getText().isEmpty() || lbResult.getText().isEmpty()) {
+			if (tfInput.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Trống!");
 				return;
 			}
-			new EditDialog(veDict, new Word(tfInput.getText(), lbResult.getText()));
+			Word word = findByVietnamese(tfInput.getText());
+			if (word == null) {
+				JOptionPane.showMessageDialog(null, "Từ không tồn tại!");
+				return;
+			} else {
+				new EditDialog(veDict, word);
+			}
 		}
 	}
 
-	private void itemNewActionPerformed(java.awt.event.ActionEvent evt) {
+	private void itemNewActionPerformed(ActionEvent evt) {
 		if (rdbEV.isSelected()) {
 			new NewDialog(evDict);
 		}
@@ -204,29 +216,35 @@ public class UserInterface extends JFrame {
 
 	private void translateAction() {
 		if (rdbEV.isSelected()) {
-			lbResult.setText(findByEnglish(tfInput.getText()));
+			if (findByEnglish(tfInput.getText()) != null) {
+				lbResult.setText(findByEnglish(tfInput.getText()).getResult());
+			} else {
+				lbResult.setText("Không tìm thấy !");
+			}
 		}
 		if (rdbVE.isSelected()) {
-			lbResult.setText(findByVietnamese(tfInput.getText()));
+			if (findByEnglish(tfInput.getText()) != null) {
+				lbResult.setText(findByVietnamese(tfInput.getText()).getResult());
+			} else {
+				lbResult.setText("Không tìm thấy !");
+			}
 		}
 	}
 
-	private String findByEnglish(String s) {
+	private Word findByEnglish(String s) {
 		for (Word n : evDict.getWords()) {
 			if (n.getWord().equals(s)) {
-				return n.getResult();
+				return n;
 			}
 		}
-		return "Không tìm thấy";
+		return null;
 	}
 
-	private String findByVietnamese(String s) {
+	private Word findByVietnamese(String s) {
 		for (Word n : veDict.getWords()) {
-			if (n.getWord().equals(s)) {
-				return n.getResult();
-			}
+			if (n.getWord().equals(s)) return n;
 		}
-		return "Không tìm thấy";
+		return null;
 	}
 
 	public static void main(String args[]) {

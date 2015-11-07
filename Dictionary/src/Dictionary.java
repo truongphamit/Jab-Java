@@ -23,14 +23,6 @@ public class Dictionary {
 		readWordsFromFile();
 	}
 
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
 	public TreeSet<Word> getWords() {
 		return words;
 	}
@@ -52,8 +44,7 @@ public class Dictionary {
 		}
 		w = s.substring(0, i);
 		r = s.substring(i + 1, s.length());
-		Word word = new Word(w, r);
-		return word;
+		return new Word(w, r);
 	}
 
 	public boolean add(Word word) throws IOException {

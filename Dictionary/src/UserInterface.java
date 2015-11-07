@@ -223,7 +223,7 @@ public class UserInterface extends JFrame {
 			}
 		}
 		if (rdbVE.isSelected()) {
-			if (findByEnglish(tfInput.getText()) != null) {
+			if (findByVietnamese(tfInput.getText()) != null) {
 				lbResult.setText(findByVietnamese(tfInput.getText()).getResult());
 			} else {
 				lbResult.setText("Không tìm thấy !");

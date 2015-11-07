@@ -23,7 +23,7 @@ public class EditDialog extends JDialog{
 	private JButton btn;
 	
 	public EditDialog(Dictionary dict, Word word) {
-		this.setDict(dict);
+		this.dict = dict;
 		this.word = word;
 		initComponents();
 	}
@@ -81,13 +81,5 @@ public class EditDialog extends JDialog{
         setSize(300, 150);
         setLocationRelativeTo(null);
         setVisible(true);
-	}
-
-	public Dictionary getDict() {
-		return dict;
-	}
-
-	public void setDict(Dictionary dict) {
-		this.dict = dict;
 	}
 }

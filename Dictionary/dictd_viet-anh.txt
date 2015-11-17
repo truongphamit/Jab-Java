@@ -2745,6 +2745,9 @@ chàng trai	<html>@chàng trai<br>-@chàng trai<br>- [Young] fellow, lad</html>
 chành	<html>@chành<br>-@chành<br>- Open wide (one's mouth...)</html>
 chành bành	<html>@chành bành<br>-@chành bành<br>- (địa phương) Wide open</html>
 chào	<html>@chào<br>-@chào<br>* verb<br>- To greet, to salute<br>=chào cờ+to salute the flag<br>=chào từ biệt+to say good-bye<br>=ngả mũ chào thầy giáo+to take off one's hat and greet one's teacher<br>=chào chị, tôi về+good-bye madam (miss, sister...), I am going back<br>-To solicit<br>=nhà hàng chào khách+the shopkeeper solicits customers, the shopkeeper solicits people for their custom<br>=chào hàng+to solicit customers to buy one's goods, to solicit custom for one's goods, to cry one's wares</html>
+chào abc	<html>@chào abc<br> -abc</html>
+chào abcd	<html>@chào abcd<br> -abcd</html>
+chào abcde	<html>@chào abcde<br> -abcde</html>
 chào hàng	<html>@chào hàng<br>-@chào hàng<br>- Canvass<br>=Người đi chào hàng+Canvasser</html>
 chào hỏi	<html>@chào hỏi<br>-@chào hỏi<br>- To pass the time of day</html>
 chào mào	<html>@chào mào<br>-@chào mào<br>* noun<br>- Red-whispered bulbul</html>

@@ -16,10 +16,12 @@ public class Main {
 
     public static void method() throws IOException{
         try {
-            method1();
+            Object array[] = new Object[5];
+            System.out.print(array[0]);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        method1();
     }
 
     public static void method1() throws IOException {
